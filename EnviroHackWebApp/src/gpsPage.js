@@ -1,11 +1,13 @@
 import './App.css';
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
-import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps'; 
+import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import { withRouter } from './withRouter';
 // GoogleMap - The Map itself
 // withScriptjs & withGoogleMap - Embeds Google script on the page to load map correctly using higher order components
 // Marker - Needed to add markers to the map
 // InfoWindow - Shows a text window above a marker
+
 
 class GpsInput extends React.Component{
   constructor(props){
@@ -40,17 +42,17 @@ class GpsInput extends React.Component{
           lat: newLat,
           lng: newLong
       },
-  })
-
+    })
   }
 
-  async handleReportButton(event){
-
-    event.preventDefault();
-
+  async handleReportButton(){
     console.log("Creating Report");
-    const url = "/testpyconnect?lat=" + this.state.markerPosition.lat + '&lng=' + this.state.markerPosition.lng;
-    const res = await fetch(url);
+    // updating state of index
+    this.props.updateEmail("admin");
+    // const url = "/testpyconnect?lat=" + this.state.markerPosition.lat + '&lng=' + this.state.markerPosition.lng;
+    // const res = await fetch(url);
+
+    this.props.navigate('/reports', {state : {email : "admin"}});
 
     // get imageData: json = JSON.parse(res); json.imageData
   }
@@ -66,14 +68,14 @@ class GpsInput extends React.Component{
 
     // Loads a map wrapped with higher order components at a given lat and long
     const WrappedMap = withScriptjs(withGoogleMap(prosp =>
-      <GoogleMap 
-        defaultZoom={10} 
-        defaultCenter={{lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng}} 
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng}}
       >
-        <Marker 
+        <Marker
           draggable={true}
           onDragEnd={this.onMarkerDragEnd}
-          position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }} 
+          position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
         >
           {<InfoWindow>
             <div>
@@ -82,12 +84,12 @@ class GpsInput extends React.Component{
           </InfoWindow> }
         </Marker>
       </GoogleMap>
-      
+
     ));
 
     return (
       <div style={{ width: '80vw', height: '100vh' }}>
-        
+
         {/* Displays the map  */}
         <WrappedMap googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyAUTWxZ7iFZMXHdMBE_pmKJIgbqDEQw3f4&v=3.exp&libraries=geometry,drawing,places'}
         loadingElement={<div style={{ height: "100%" }} />}
@@ -96,14 +98,12 @@ class GpsInput extends React.Component{
         />
 
         <h3>Latitude: {this.state.markerPosition.lat}</h3> <br />
-        <h3>Longitude: {this.state.markerPosition.lng}</h3> 
+        <h3>Longitude: {this.state.markerPosition.lng}</h3>
 
         <button onClick={this.handleReportButton}>Create Report</button>
       </div>
     );
-    
   }
-  
 }
 
-export default GpsInput;
+export default withRouter(GpsInput);
