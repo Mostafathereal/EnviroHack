@@ -107,3 +107,4 @@ class GpsInput extends React.Component{
 }
 
 export default withRouter(GpsInput);
+// export default GpsInput;
