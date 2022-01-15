@@ -26,12 +26,12 @@ def getIndex(lat, lon, startDate, endDate, landIndexDataset, indexName, scale=30
 
     lst_img = lst.mean()
 
-    # Create a URL to the styled image for a region around France.
-    url = lst_img.getThumbUrl({
-        'min': -1, 'max': 1, 'dimensions': 1024, 'region': roi,
-        'palette': palette})
-    print('\nPlease wait while the thumbnail loads, it may take a moment...')
-    print(url)
+    # # Create a URL to the styled image for a region around France.
+    # url = lst_img.getThumbUrl({
+    #     'min': -1, 'max': 1, 'dimensions': 1024, 'region': roi,
+    #     'palette': palette})
+    # print('\nPlease wait while the thumbnail loads, it may take a moment...')
+    # print(url)
 
     # Display the thumbnail land surface temperature in France.
     # Image(url=url)
