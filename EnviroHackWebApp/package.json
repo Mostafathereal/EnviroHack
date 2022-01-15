@@ -1,0 +1,50 @@
+{
+  "name": "my-react-app",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:5000",
+  "dependencies": {
+    "@babel/core": "^7.16.7",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "concurrently": "^6.5.1",
+    "express": "^4.17.2",
+    "mssql": "^7.3.0",
+    "mysql": "^2.18.1",
+    "promise-mysql": "^5.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-google-maps": "^9.4.5",
+    "react-scripts": "^5.0.0",
+    "serve": "^13.0.2",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"node server.js\" \"react-scripts start\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
