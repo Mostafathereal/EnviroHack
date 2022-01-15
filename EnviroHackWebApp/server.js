@@ -50,12 +50,16 @@ app.get('/login/:email', function (req, res) {
 
 app.get('/testpyconnect', function(req, res){
   console.log("entered in testpyconnect");
+
   const socket = io("http://localhost:3050");
+  var lat = req.query.lat;
+  var lng = req.query.lng;
+
   socket.on("connect", () => {
     // either with send()
     socket.send("Hello!");
     // // or with emit() and custom event names
-    socket.emit("my_message", "we did it");
+    socket.emit("my_message", lat + " " + lng);
     console.log('connected ... ');
   });
 
@@ -67,7 +71,7 @@ app.get('/testpyconnect', function(req, res){
 
   // handle the event sent with socket.emit()
   socket.on("my_message_response", data => {
-    //console.log(elm1);
+    console.log(data);
     res.json(data);
   });
 

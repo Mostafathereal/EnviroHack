@@ -32,7 +32,7 @@ scale = 30  # scale in meters
 
 palette = ['ffffff', 'ff0000', 'ffff00', '00ffff', '0000ff']
 
-getIndex(lat, lon, i_date, f_date, landsatWaterIndex, 'NDWI', palette=palette)
+# getIndex(lat, lon, i_date, f_date, landsatWaterIndex, 'NDWI', palette=palette)
 
 
 def main():
@@ -48,6 +48,8 @@ def main():
     def my_message(sid, data):
         print('message :', data)
         print("sid: ", sid)
+        lat, lon = str(data).split();
+        lat, lon = float(lat), float(lon)
         image_b64_string = getIndex(lat, lon, i_date, f_date, landsatWaterIndex, 'NDWI', palette=palette)
         dic = {"imageData": image_b64_string}
         # data = data.split()

@@ -8,17 +8,21 @@ import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-
 // InfoWindow - Shows a text window above a marker
 
 class GpsInput extends React.Component{
-
-  state = {
-    address: "",
-    mapPosition: {
-      lat: 0,
-      lng: 0,
-    },
-    markerPosition: {
-      lat: 0,
-      lng: 0,
+  constructor(props){
+    super(props);
+    this.state = {
+      address: "",
+      mapPosition: {
+        lat: 0,
+        lng: 0,
+      },
+      markerPosition: {
+        lat: 0,
+        lng: 0,
+      }
     }
+
+    this.handleReportButton = this.handleReportButton.bind(this);
   }
 
   // When dragging marker over part of the map, change its lat and long
@@ -40,6 +44,16 @@ class GpsInput extends React.Component{
 
   }
 
+  async handleReportButton(event){
+
+    event.preventDefault();
+
+    console.log("Creating Report");
+    const url = "/testpyconnect?lat=" + this.state.markerPosition.lat + '&lng=' + this.state.markerPosition.lng;
+    const res = await fetch(url);
+
+    // get imageData: json = JSON.parse(res); json.imageData
+  }
 
 /// take in gps coordinates
 /// make call to send coordinates to python module through/handled by the backend
@@ -84,6 +98,7 @@ class GpsInput extends React.Component{
         <h3>Latitude: {this.state.markerPosition.lat}</h3> <br />
         <h3>Longitude: {this.state.markerPosition.lng}</h3> 
 
+        <button onClick={this.handleReportButton}>Create Report</button>
       </div>
     );
     
