@@ -17,16 +17,20 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ""
+      email: "",
+      NDWIImageData: "",
+      NDVIImageData: "",
+      BAIImageData: "",
+      segImageData: ""
     }
-    this.updateEmail = this.updateEmail.bind(this)
+    this.updateState = this.updateState.bind(this)
   }
 
 // used to allow other components to update state for the props that would be passed to other components
 // need to change name to make general
-  updateEmail(e) {
+  updateState(e) {
     console.log("hello")
-    this.setState({email: e})
+    this.setState(e)
   }
 
   render() {
@@ -34,9 +38,9 @@ class Index extends React.Component {
       <div>
         <Router>
           <Routes>
-            <Route exact path="/gps" element={<GpsInput updateEmail={this.updateEmail}/>}/>
+            <Route exact path="/gps" element={<GpsInput updateState={this.updateState}/>}/>
             <Route exact path="/" element={<Navigate to="/gps" />}/>
-            <Route exact path="/reports" element={<Reports email={this.state.email}/>}/>
+            <Route exact path="/reports" element={<Reports NDWIImageData={this.state.NDWIImageData}/>}/>
           </Routes>
         </Router>
       </div>

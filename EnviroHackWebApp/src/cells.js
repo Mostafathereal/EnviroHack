@@ -6,11 +6,22 @@ import Box from "@material-ui/core/Box";
 class Cell extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      isView: false,
+    }
   }
 
 
+  handleView(){
+    //console.log(e)
+    NDWIImageData = this.props.NDWIImageData;
+    this.setState({isView: true})
+    /// to do print out the image data
+  }
+
 render() {
-  const { date, reportName } = this.props;
+  const { date, reportName, NDWIImageData } = this.props;
+  var isView = this.state.isView;
 
   return(
   <TableRow>
@@ -26,12 +37,18 @@ render() {
       {reportName}
     </TableCell>
     <TableCell>
-      <button>View</button>
+      <button onClick={this.handleView}>View</button>
     </TableCell>
     <TableCell>
       <button>Export</button>
     </TableCell>
   </TableRow>
+  <div>
+    {isView
+      ? <image></image>
+      : <h></h>
+    }
+  </div>
   )}
 }
 

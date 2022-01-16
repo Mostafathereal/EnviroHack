@@ -72,6 +72,9 @@ class GpsInput extends React.Component{
 
     // this.props.navigate('/reports');
     // console.log("4")
+    this.props.updateState({NDWIImageData: });
+    this.props.navigate('/reports');
+
   }
 
 

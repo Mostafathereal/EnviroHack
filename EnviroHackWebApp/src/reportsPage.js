@@ -90,7 +90,7 @@ class Reports extends React.Component{
                 </TableRow>
               </TableHead>
               <TableBody>
-                <Cell date="Hello" reportName="reportName"/>
+                <Cell date="Hello" reportName="reportName" NDWIImageData={this.state.NDWIImageData}/>
               </TableBody>
             </Box>
           </TableContainer>
