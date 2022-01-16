@@ -132,3 +132,7 @@ dmypy.json
 
 # node modules
 node_modules/
+
+# sat images
+ImageAnalysis/satellite_images
+ImageAnalysis/composite_images

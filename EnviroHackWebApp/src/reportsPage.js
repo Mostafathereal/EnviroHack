@@ -1,7 +1,6 @@
 import './App.css';
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
-import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
@@ -30,15 +29,6 @@ class Reports extends React.Component{
   }
 
   render(){
-  const Button = styled.button`
-    background-color: white;
-    color: black;
-    font-size: 20px;
-    padding: 10px 60px;
-    border-radius: 5px;
-    margin: 10px 0px;
-    cursor: pointer;
-  `;
 // Usage
 
     return (
