@@ -16,6 +16,8 @@ from io import BytesIO
 import os
 import glob
 
+from PIL import ImageStat
+
 try:
     ee.Initialize()
 
@@ -75,7 +77,11 @@ def main():
         lat, lon = float(lat), float(lon)
         ndwi_b64_string = getIndex(lat, lon, i_date, f_date, landsatWaterIndex, 'NDWI', palette=palette)
         ndvi_b64_string = getIndex(lat, lon, i_date, f_date, landsatVegIndex, 'NDVI', palette=palette)
-        bai_b64_string = getIndex(lat, lon, i_date, f_date, landsatVegIndex, 'BAI', palette=palette)
+        bai_b64_string = getIndex(lat, lon, i_date, f_date, landsatBurnIndex, 'BAI', palette=palette)
+
+        # ndvi_im = BytesIO(base64.b64decode(ndvi_b64_string))
+        # ndvi_stat = ImageStat.Stat(ndvi_im)
+        # print(ndvi_stat.mean)
 
         print('Got All Indices')
 

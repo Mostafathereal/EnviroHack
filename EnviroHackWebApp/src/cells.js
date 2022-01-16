@@ -14,7 +14,7 @@ class Cell extends React.Component {
 
   handleView(){
     //console.log(e)
-    NDWIImageData = this.props.NDWIImageData;
+    const NDWIImageData = this.props.NDWIImageData;
     this.setState({isView: true})
     /// to do print out the image data
   }
@@ -24,6 +24,7 @@ render() {
   var isView = this.state.isView;
 
   return(
+    <div>
   <TableRow>
     <TableCell
       classes="cellRoot"
@@ -48,6 +49,7 @@ render() {
       ? <image></image>
       : <h></h>
     }
+  </div>
   </div>
   )}
 }

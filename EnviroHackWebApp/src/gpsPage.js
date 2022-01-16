@@ -54,9 +54,17 @@ class GpsInput extends React.Component{
           lat: newLat,
           lng: newLong
       },
+      NDWIImageData: ""
   })
 
   }
+
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve)
+    });
+  }
+
 
   async handleReportButton(){
     console.log("Creating Report");
@@ -72,8 +80,11 @@ class GpsInput extends React.Component{
 
     // this.props.navigate('/reports');
     // console.log("4")
-    this.props.updateState({NDWIImageData: });
-    this.props.navigate('/reports');
+    const json = await res.json()
+    // console.log(JSON.parse(json).NDWIImageData);
+    this.setStateAsync({NDWIImageData: JSON.parse(json).NDWIImageData});
+    // this.props.updateState({NDWIImageData: JSON.parse(json).NDWIImageData});
+    // this.props.navigate('/reports');
 
   }
 
@@ -107,7 +118,9 @@ class GpsInput extends React.Component{
       </GoogleMap>
     ));
 
+    const NDWIImageData = this.state.NDWIImageData
     return (
+      
       <div>
         <div style={{ width: '60vw', height: '70vh' }}>
 
@@ -151,6 +164,7 @@ class GpsInput extends React.Component{
               />
             </h3>
             <button onClick={this.handleReportButton}>Create Report</button>
+            <img src={"data:image/jpg;base64," + (NDWIImageData ? NDWIImageData : "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==")} alt="Red dot" />
           </div>
         </div>
       </div>
