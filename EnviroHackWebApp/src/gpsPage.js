@@ -82,10 +82,10 @@ class GpsInput extends React.Component{
     // console.log("4")
     const json = await res.json()
     // console.log(JSON.parse(json).NDWIImageData);
-    parsedJson = JSON.parse(json);
+    const parsedJson = JSON.parse(json);
     //this.setStateAsync({NDWIImageData: parsedJson.NDWIImageData, NDVIImageData: parsedJson.NDVIImageData, BAIImageData: parsedJson.BAIImageData, segImageData: parsedJson.segImageData});
     this.props.updateState({NDWIImageData: parsedJson.NDWIImageData, NDVIImageData: parsedJson.NDVIImageData, BAIImageData: parsedJson.BAIImageData, segImageData: parsedJson.segImageData});
-    this.props.navigate('/reports');
+    this.props.navigate('/indices');
 
   }
 

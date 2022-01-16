@@ -77,7 +77,7 @@ def main():
         lat, lon = float(lat), float(lon)
         ndwi_b64_string = getIndex(lat, lon, i_date, f_date, landsatWaterIndex, 'NDWI', palette=palette)
         ndvi_b64_string = getIndex(lat, lon, i_date, f_date, landsatVegIndex, 'NDVI', palette=palette)
-        bai_b64_string = getIndex(lat, lon, i_date, f_date, landsatBurnIndex, 'BAI', palette=palette)
+        bai_b64_string = getBurnIndex(lat, lon, i_date, f_date, landsatBurnIndex, 'BAI', palette=palette)
 
         # ndvi_im = BytesIO(base64.b64decode(ndvi_b64_string))
         # ndvi_stat = ImageStat.Stat(ndvi_im)
@@ -199,4 +199,9 @@ def satMapbox(lat, lon):
     return composite
 
 if __name__ == '__main__':
+    satPAth = './land_cover_classification_unet/satellite_images/'
+
+    files = glob.glob(satPAth + '*')
+    for f in files:
+        os.remove(f)
     main()

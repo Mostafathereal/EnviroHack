@@ -4,76 +4,76 @@ const app = express();
 const mysql = require('mysql');
 const { io } = require('socket.io-client');
 //Call body-parser for POST data handling
-var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: false }));
+// var bodyParser = require("body-parser");
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 const port = 3000;
 const host = 'localhost'
 
-const Sequelize = require("sequelize-cockroachdb");
+// const Sequelize = require("sequelize-cockroachdb");
 
 // For secure connection to CockroachDB
-const fs = require('fs');
+// const fs = require('fs');
 
 // Connect to CockroachDB through Sequelize
-var sequelize = new Sequelize({
-  dialect: "postgres",
-  username: "chris",
-  password: "thisismysql123",
-  host: host,
-  port: port,
-  database: "reports",
-  dialectOptions: {
-    ssl: {
+// var sequelize = new Sequelize({
+//   dialect: "postgres",
+//   username: "chris",
+//   password: "thisismysql123",
+//   host: host,
+//   port: port,
+//   database: "reports",
+//   dialectOptions: {
+//     ssl: {
 
-      //For secure connection:
-      ca: fs.readFileSync('./certs/root.crt')
-              .toString()
-    },
-  },
-  logging: false,
-});
+//       //For secure connection:
+//       ca: fs.readFileSync('./certs/root.crt')
+//               .toString()
+//     },
+//   },
+//   logging: false,
+// });
 
 //Define the table we'll be working with in CockroachDB
 
-const report = sequelize.define("report", {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    waterInd: {
-        type: Sequelize.TEXT
-    },
-    vegeInd: {
-      type: Sequelize.TEXT
-    },
-    burnInd: {
-      type: Sequelize.TEXT
-    },
-    segData: {
-      type: Sequelize.TEXT
-    },
-});
+// const report = sequelize.define("report", {
+//     id: {
+//       type: Sequelize.INTEGER,
+//       autoIncrement: true,
+//       primaryKey: true
+//     },
+//     waterInd: {
+//         type: Sequelize.TEXT
+//     },
+//     vegeInd: {
+//       type: Sequelize.TEXT
+//     },
+//     burnInd: {
+//       type: Sequelize.TEXT
+//     },
+//     segData: {
+//       type: Sequelize.TEXT
+//     },
+// });
 
 //Create a page that lists our contacts already in the database
 
-app.get('/list', (req, res) => {
+// app.get('/list', (req, res) => {
 
-    //Get our data from CockroachDB
-    report.sync({
-         force:false,
-    })
-    .then(function() {
-       return report.findAll();
-    })
+//     //Get our data from CockroachDB
+//     report.sync({
+//          force:false,
+//     })
+//     .then(function() {
+//        return report.findAll();
+//     })
 
-    // .then(function (report) {
-    //     //Render output from CockroachDB using our PUG template
-    //     res.render('list', { report : report });
-    // })
+//     // .then(function (report) {
+//     //     //Render output from CockroachDB using our PUG template
+//     //     res.render('list', { report : report });
+//     // })
 
-});
+// });
 
 app.get('/test', function (req, res) {
     var con = mysql.createConnection({
@@ -139,29 +139,29 @@ app.get('/testpyconnect', function(req, res){
     console.log(data);
     res.json(data);
 
-    json = res.json()
-    var waterIndRes = JSON.parse(json).NDWIImageData
+    // json = res.json()
+    // var waterIndRes = JSON.parse(json).NDWIImageData
 
-    //Add our POST data to CockroachDB via Sequelize
-    report.sync({
-        force: false,
-    })
-        .then(function () {
-        // Insert new data into People table
-        return report.bulkCreate([
-            {
-            waterInd: waterIndRes,
-            },
-        ]);
-        })
+    // //Add our POST data to CockroachDB via Sequelize
+    // report.sync({
+    //     force: false,
+    // })
+    //     .then(function () {
+    //     // Insert new data into People table
+    //     return report.bulkCreate([
+    //         {
+    //         waterInd: waterIndRes,
+    //         },
+    //     ]);
+    //     })
 
-    	  //Error handling for database errors
-        .catch(function (err) {
-        console.error("error: " + err.message);
-        });
+    // 	  //Error handling for database errors
+    //     .catch(function (err) {
+    //     console.error("error: " + err.message);
+    //     });
 
-        //Tell them it was a success
-        res.send('Submitted Successfully!<br /> WaterInd:  ' + waterInd);
+    //     //Tell them it was a success
+    //     res.send('Submitted Successfully!<br /> WaterInd:  ' + waterInd);
   });
 
   //close socket connection
@@ -172,10 +172,10 @@ app.get('/testpyconnect', function(req, res){
 //make event handlers to send gps coordinates
 //make event handler to receive image from python module, decode and send to frontend
 
-// var server = app.listen(5000, function () {
-//     console.log('Server is listening on port 5000...');
-// });
-
-app.listen(port, host, () => {
-    console.log(`Server started at ${host} port ${port}`);
+var server = app.listen(5000, function () {
+    console.log('Server is listening on port 5000...');
 });
+
+// app.listen(port, host, () => {
+//     console.log(`Server started at ${host} port ${port}`);
+// });
