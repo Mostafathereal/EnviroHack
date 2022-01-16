@@ -19,6 +19,8 @@ landsatWaterIndex = 'LANDSAT/LC08/C01/T1_8DAY_NDWI'
 landsatVegIndex = 'LANDSAT/LC08/C01/T1_8DAY_NDWI'
 highResRGB = 'SKYSAT/GEN-A/PUBLIC/ORTHO/RGB'
 
+rawImages = "LANDSAT/LC08/C01/T1"
+
 i_date = '2015-01-01'
 f_date = '2015-12-10'
 
@@ -30,4 +32,4 @@ scale = 30  # scale in meters
 
 palette = ['ffffff', 'ff0000', 'ffff00', '00ffff', '0000ff']
 
-getRGB(lat, lon, i_date, f_date, highResRGB)
+getRGB(lat, lon, i_date, f_date, highResRGB, 'B', palette=palette, scale=0.8)

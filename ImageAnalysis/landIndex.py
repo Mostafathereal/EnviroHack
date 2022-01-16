@@ -52,8 +52,8 @@ def getIndex(lat, lon, startDate, endDate, landIndexDataset, indexName, scale=30
     print(image.shape)
 
     # show converted image
-    # cv2.imshow(indexName, image)
-    # cv2.waitKey(0)
+    cv2.imshow(indexName, image)
+    cv2.waitKey(0)
 
     # decode into base64 string
     _, image_bytes = cv2.imencode('.jpg', image)
