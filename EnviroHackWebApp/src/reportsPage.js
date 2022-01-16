@@ -30,12 +30,14 @@ class Reports extends React.Component{
   }
 
   render(){
-    var result = "";
-    var name = "";
-    for(var i=0; i < 3; i++){
-      name = "reportName"
-      result='<Cell date="01/16/22" reportName=' + name + '/>';
-    }
+    // var result = "";
+    // var name = "";
+    // for(var i=0; i < 3; i++){
+    //   name = "reportName"
+    //   result='<Cell date="01/16/22" reportName=' + name + '/>';
+    // }
+
+    const { NDWIImageData, NDVIImageData, BAIImageData, segImageData } = this.props;
 
 
     return (
@@ -97,7 +99,7 @@ class Reports extends React.Component{
                 </TableRow>
               </TableHead>
               <TableBody>
-                <Cell date="01/16/22" reportName="reportName"/>
+                <Cell date="01/16/22" reportName="reportName" NDWIImageData=NDWIImageData NDVIImageData=NDVIImageData BAIImageData=BAIImageData segImageData=segImageData />
               </TableBody>
             </Box>
           </TableContainer>
