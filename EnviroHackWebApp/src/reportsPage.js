@@ -26,7 +26,9 @@ class Reports extends React.Component{
   }
 
   handleView() {
-    this.props.navigate('/indices')
+    const { NDWIImageData, NDVIImageData, BAIImageData, segImageData } = this.props;
+    this.props.updateState({NDWIImageData: NDWIImageData, NDVIImageData: NDVIImageData, BAIImageData: BAIImageData, segImageData: segImageData});
+    this.props.navigate('/indices');
   }
 
   render(){
@@ -36,9 +38,6 @@ class Reports extends React.Component{
     //   name = "reportName"
     //   result='<Cell date="01/16/22" reportName=' + name + '/>';
     // }
-
-    const { NDWIImageData, NDVIImageData, BAIImageData, segImageData } = this.props;
-
 
     return (
       <div>
