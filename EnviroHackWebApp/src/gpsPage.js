@@ -82,9 +82,10 @@ class GpsInput extends React.Component{
     // console.log("4")
     const json = await res.json()
     // console.log(JSON.parse(json).NDWIImageData);
-    this.setStateAsync({NDWIImageData: JSON.parse(json).NDWIImageData});
-    // this.props.updateState({NDWIImageData: JSON.parse(json).NDWIImageData});
-    // this.props.navigate('/reports');
+    parsedJson = JSON.parse(json);
+    //this.setStateAsync({NDWIImageData: parsedJson.NDWIImageData, NDVIImageData: parsedJson.NDVIImageData, BAIImageData: parsedJson.BAIImageData, segImageData: parsedJson.segImageData});
+    this.props.updateState({NDWIImageData: parsedJson.NDWIImageData, NDVIImageData: parsedJson.NDVIImageData, BAIImageData: parsedJson.BAIImageData, segImageData: parsedJson.segImageData});
+    this.props.navigate('/reports');
 
   }
 
@@ -95,6 +96,9 @@ class GpsInput extends React.Component{
 
 /// on gps page, have input field for gps coordinates and map to also use the as potential input
 /// the maps take in regular street addresses and can let users see the map and click on it etc.
+
+// how we did the image thing in this file for reference
+// <img src={"data:image/jpg;base64," + (NDWIImageData ? NDWIImageData : "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==")} alt="Red dot" />
 
   render(){
 
@@ -120,7 +124,7 @@ class GpsInput extends React.Component{
 
     const NDWIImageData = this.state.NDWIImageData
     return (
-      
+
       <div>
         <div style={{ width: '60vw', height: '70vh' }}>
 
@@ -164,7 +168,6 @@ class GpsInput extends React.Component{
               />
             </h3>
             <button onClick={this.handleReportButton}>Create Report</button>
-            <img src={"data:image/jpg;base64," + (NDWIImageData ? NDWIImageData : "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==")} alt="Red dot" />
           </div>
         </div>
       </div>

@@ -2,29 +2,24 @@ import React, { useRef } from 'react';
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Box from "@material-ui/core/Box";
+import { withRouter } from './withRouter'
 
 class Cell extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      isView: false,
-    }
   }
 
 
   handleView(){
+    this.props.navigate('/indices');
     //console.log(e)
-    const NDWIImageData = this.props.NDWIImageData;
-    this.setState({isView: true})
     /// to do print out the image data
   }
 
 render() {
-  const { date, reportName, NDWIImageData } = this.props;
-  var isView = this.state.isView;
+  const { date, reportName } = this.props;
 
   return(
-    <div>
   <TableRow>
     <TableCell
       classes="cellRoot"
@@ -44,14 +39,7 @@ render() {
       <button>Export</button>
     </TableCell>
   </TableRow>
-  <div>
-    {isView
-      ? <image></image>
-      : <h></h>
-    }
-  </div>
-  </div>
   )}
 }
 
-export default Cell;
+export default withRouter(Cell);

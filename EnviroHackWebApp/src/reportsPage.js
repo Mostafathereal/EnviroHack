@@ -29,7 +29,13 @@ class Reports extends React.Component{
   }
 
   render(){
-// Usage
+    var result = "";
+    var name = "";
+    for(var i=0; i < 3; i++){
+      name = "reportName"
+      result='<Cell date="01/16/22" reportName=' + name + '/>';
+    }
+
 
     return (
       <div>
@@ -90,7 +96,7 @@ class Reports extends React.Component{
                 </TableRow>
               </TableHead>
               <TableBody>
-                <Cell date="Hello" reportName="reportName" NDWIImageData={this.state.NDWIImageData}/>
+                <Cell date="01/16/22" reportName="reportName"/>
               </TableBody>
             </Box>
           </TableContainer>

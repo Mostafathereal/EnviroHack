@@ -3,6 +3,7 @@ import ReactDOM, { render } from 'react-dom';
 import './index.css';
 import GpsInput  from './gpsPage';
 import Reports from './reportsPage';
+import Indices from './indicesPage';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 
 // ReactDOM.render(
@@ -40,7 +41,15 @@ class Index extends React.Component {
           <Routes>
             <Route exact path="/gps" element={<GpsInput updateState={this.updateState}/>}/>
             <Route exact path="/" element={<Navigate to="/gps" />}/>
-            <Route exact path="/reports" element={<Reports NDWIImageData={this.state.NDWIImageData}/>}/>
+            <Route exact path="/reports" element={<Reports />}/>
+            <Route exact path="/indices"
+            element={<
+              Indices
+              NDWIImageData={this.state.NDWIImageData}
+              NDVIImageData={this.state.NDVIImageData}
+              BAIImageData={this.state.BAIImageData}
+              segImageData={this.state.segImageData}
+              />}/>
           </Routes>
         </Router>
       </div>
