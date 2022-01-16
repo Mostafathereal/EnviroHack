@@ -23,10 +23,10 @@ import { withRouter } from './withRouter'
 class Reports extends React.Component{
   constructor(props){
     super(props);
-    this.state = {
-      email: this.props.email,
-      password: "",
-    }
+  }
+
+  handleView() {
+    this.props.navigate('/indices')
   }
 
   render(){
@@ -99,7 +99,25 @@ class Reports extends React.Component{
                 </TableRow>
               </TableHead>
               <TableBody>
-                <Cell date="01/16/22" reportName="reportName" NDWIImageData=NDWIImageData NDVIImageData=NDVIImageData BAIImageData=BAIImageData segImageData=segImageData />
+                <TableRow>
+                  <TableCell
+                    classes="cellRoot"
+                    component="th"
+                    variant="head"
+                    scope="row"
+                  >
+                    {date}
+                  </TableCell>
+                  <TableCell>
+                    {reportName}
+                  </TableCell>
+                  <TableCell>
+                    <button onClick={this.handleView}>View</button>
+                  </TableCell>
+                  <TableCell>
+                    <button>Export</button>
+                  </TableCell>
+                </TableRow>
               </TableBody>
             </Box>
           </TableContainer>
