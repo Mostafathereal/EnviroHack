@@ -13,6 +13,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import Cell from "./cells"
+import { withRouter } from './withRouter'
 
 // GoogleMap - The Map itself
 // withScriptjs & withGoogleMap - Embeds Google script on the page to load map correctly using higher order components
