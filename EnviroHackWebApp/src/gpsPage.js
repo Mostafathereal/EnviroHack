@@ -61,13 +61,17 @@ class GpsInput extends React.Component{
   async handleReportButton(){
     console.log("Creating Report");
     // updating state of index
-    this.props.updateEmail("admin");
-    // const url = "/testpyconnect?lat=" + this.state.markerPosition.lat + '&lng=' + this.state.markerPosition.lng;
-    // const res = await fetch(url);
+    // this.props.updateEmail("admin");
+    console.log("1")
+    const url = "/testpyconnect?lat=" + this.state.markerPosition.lat + '&lng=' + this.state.markerPosition.lng;
+    console.log("2")
+    const res = await fetch(url);
+    console.log("3")
 
     // get imageData: json = JSON.parse(res); json.imageData
 
-    this.props.navigate('/reports');
+    // this.props.navigate('/reports');
+    // console.log("4")
   }
 
 
@@ -98,7 +102,6 @@ class GpsInput extends React.Component{
           </InfoWindow> }
         </Marker>
       </GoogleMap>
-
     ));
 
     return (
