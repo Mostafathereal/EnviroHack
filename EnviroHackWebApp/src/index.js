@@ -34,6 +34,8 @@ class Index extends React.Component {
     this.setState(e)
   }
 
+            // <Route exact path="/reports" element={<Reports />}/>
+
   render() {
     return (
       <div>
@@ -41,10 +43,8 @@ class Index extends React.Component {
           <Routes>
             <Route exact path="/gps" element={<GpsInput updateState={this.updateState}/>}/>
             <Route exact path="/" element={<Navigate to="/gps" />}/>
-            <Route exact path="/reports" element={<Reports />}/>
-
+            <Route exact path="/reports" element={<Reports NDWIImageData={this.state.NDWIImageData} NDVIImageData={this.state.NDVIImageData} BAIImageData={this.state.BAIImageData} segImageData={this.state.segImageData}/>}/>
             <Route exact path="/indices" element={<Indices NDWIImageData={this.state.NDWIImageData} NDVIImageData={this.state.NDVIImageData} BAIImageData={this.state.BAIImageData} segImageData={this.state.segImageData}/>}/>
-
           </Routes>
         </Router>
       </div>

@@ -106,4 +106,4 @@ class Reports extends React.Component{
   }
 }
 
-export default Reports;
+export default withRouter(Reports);
