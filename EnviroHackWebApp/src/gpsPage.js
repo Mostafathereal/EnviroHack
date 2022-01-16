@@ -2,14 +2,26 @@ import './App.css';
 import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
-import { withRouter } from './withRouter';
+import { withRouter } from './withRouter'
 // GoogleMap - The Map itself
 // withScriptjs & withGoogleMap - Embeds Google script on the page to load map correctly using higher order components
 // Marker - Needed to add markers to the map
 // InfoWindow - Shows a text window above a marker
 
+var keyIn = false; // Temporary Fix
+var mapsKey = ''; // Temporary Fix
+
+// // Temporary Solution
+// if (keyIn == false) {
+//   mapsKey = prompt("What's the input API key?");
+//   console.log(mapsKey);
+//   keyIn = true;
+// }
+// Hard Coded (REMOVE FOR SURE)
+mapsKey = 'AIzaSyAUTWxZ7iFZMXHdMBE_pmKJIgbqDEQw3f4';
 
 class GpsInput extends React.Component{
+
   constructor(props){
     super(props);
     this.state = {
@@ -42,7 +54,8 @@ class GpsInput extends React.Component{
           lat: newLat,
           lng: newLong
       },
-    })
+  })
+
   }
 
   async handleReportButton(){
@@ -52,10 +65,11 @@ class GpsInput extends React.Component{
     // const url = "/testpyconnect?lat=" + this.state.markerPosition.lat + '&lng=' + this.state.markerPosition.lng;
     // const res = await fetch(url);
 
-    this.props.navigate('/reports', {state : {email : "admin"}});
-
     // get imageData: json = JSON.parse(res); json.imageData
+
+    this.props.navigate('/reports');
   }
+
 
 /// take in gps coordinates
 /// make call to send coordinates to python module through/handled by the backend
@@ -88,23 +102,56 @@ class GpsInput extends React.Component{
     ));
 
     return (
-      <div style={{ width: '80vw', height: '100vh' }}>
+      <div>
+        <div style={{ width: '60vw', height: '70vh' }}>
 
-        {/* Displays the map  */}
-        <WrappedMap googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyAUTWxZ7iFZMXHdMBE_pmKJIgbqDEQw3f4&v=3.exp&libraries=geometry,drawing,places'}
-        loadingElement={<div style={{ height: "100%" }} />}
-        containerElement={<div style={{ height: "400px" }} />}
-        mapElement={<div style={{ height: "100%" }} />}
-        />
+          {/* Displays the map  */}
+          <WrappedMap googleMapURL={'https://maps.googleapis.com/maps/api/js?key='+mapsKey+'&v=3.exp&libraries=geometry,drawing,places'}
+          loadingElement={<div style={{ height: "800%" }} />}
+          containerElement={<div style={{ height: "250px" }} />}
+          mapElement={<div style={{ height: "200%" }} />}
+          />
 
-        <h3>Latitude: {this.state.markerPosition.lat}</h3> <br />
-        <h3>Longitude: {this.state.markerPosition.lng}</h3>
+        </div>
+        <div>
+          <div style={{float:"left"}}>
+            <h3> Latitude:
+              <input type="number"
+              name="points"
+              step="1"
+              max="90"
+              min="-90"
+              value = {this.state.markerPosition.lat}
+              onChange={(e) =>
+                {
+                  console.log(e.target.value)
+                this.setState({markerPosition: {lat: parseFloat(e.target.value), lng: this.state.markerPosition.lng}, mapPosition: {lat: parseFloat(e.target.value), lng: this.state.markerPosition.lng}})}}
+              />
+            </h3>
+          </div>
 
-        <button onClick={this.handleReportButton}>Create Report</button>
+          <div style={{float: "left", marginLeft:"20px"}}>
+            <h3> Longitude:
+              <input type="number"
+              name="points"
+              step="1"
+              max="180"
+              min="-180"
+              value = {this.state.markerPosition.lng}
+              onChange={(e) =>
+                {
+                  console.log(e.target.value)
+                this.setState({markerPosition: {lat: this.state.markerPosition.lat, lng: parseFloat(e.target.value)}, mapPosition: {lat: this.state.markerPosition.lat, lng: parseFloat(e.target.value)}})}}
+              />
+            </h3>
+            <button onClick={this.handleReportButton}>Create Report</button>
+          </div>
+        </div>
       </div>
     );
+
   }
+
 }
 
 export default withRouter(GpsInput);
-// export default GpsInput;

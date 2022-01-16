@@ -43,7 +43,7 @@ class Reports extends React.Component{
 
     return (
       <div>
-        <Card>
+        <Card style = {{width:"150vh"}}>
           <CardHeader
             subheader={
               <Grid
