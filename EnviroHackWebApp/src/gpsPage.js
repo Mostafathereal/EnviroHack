@@ -18,7 +18,7 @@ var mapsKey = ''; // Temporary Fix
 //   keyIn = true;
 // }
 // Hard Coded (REMOVE FOR SURE)
-mapsKey = 'AIzaSyAUTWxZ7iFZMXHdMBE_pmKJIgbqDEQw3f4';
+mapsKey = '<>';
 
 class GpsInput extends React.Component{
 
