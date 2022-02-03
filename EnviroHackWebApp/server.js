@@ -10,70 +10,71 @@ const { io } = require('socket.io-client');
 const port = 3000;
 const host = 'localhost'
 
-// const Sequelize = require("sequelize-cockroachdb");
+//Using cockroachdb to report information
+const Sequelize = require("sequelize-cockroachdb");
 
-// For secure connection to CockroachDB
-// const fs = require('fs');
+For secure connection to CockroachDB
+const fs = require('fs');
 
-// Connect to CockroachDB through Sequelize
-// var sequelize = new Sequelize({
-//   dialect: "postgres",
-//   username: "chris",
-//   password: "thisismysql123",
-//   host: host,
-//   port: port,
-//   database: "reports",
-//   dialectOptions: {
-//     ssl: {
+Connect to CockroachDB through Sequelize
+var sequelize = new Sequelize({
+  dialect: "postgres",
+  username: "chris",
+  password: "thisismysql123",
+  host: host,
+  port: port,
+  database: "reports",
+  dialectOptions: {
+    ssl: {
 
-//       //For secure connection:
-//       ca: fs.readFileSync('./certs/root.crt')
-//               .toString()
-//     },
-//   },
-//   logging: false,
-// });
+      //For secure connection:
+      ca: fs.readFileSync('./certs/root.crt')
+              .toString()
+    },
+  },
+  logging: false,
+});
 
-//Define the table we'll be working with in CockroachDB
+Define the table we'll be working with in CockroachDB
 
-// const report = sequelize.define("report", {
-//     id: {
-//       type: Sequelize.INTEGER,
-//       autoIncrement: true,
-//       primaryKey: true
-//     },
-//     waterInd: {
-//         type: Sequelize.TEXT
-//     },
-//     vegeInd: {
-//       type: Sequelize.TEXT
-//     },
-//     burnInd: {
-//       type: Sequelize.TEXT
-//     },
-//     segData: {
-//       type: Sequelize.TEXT
-//     },
-// });
+const report = sequelize.define("report", {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    waterInd: {
+        type: Sequelize.TEXT
+    },
+    vegeInd: {
+      type: Sequelize.TEXT
+    },
+    burnInd: {
+      type: Sequelize.TEXT
+    },
+    segData: {
+      type: Sequelize.TEXT
+    },
+});
 
-//Create a page that lists our contacts already in the database
+Create a page that lists our contacts already in the database
 
-// app.get('/list', (req, res) => {
+app.get('/list', (req, res) => {
 
-//     //Get our data from CockroachDB
-//     report.sync({
-//          force:false,
-//     })
-//     .then(function() {
-//        return report.findAll();
-//     })
+    //Get our data from CockroachDB
+    report.sync({
+         force:false,
+    })
+    .then(function() {
+       return report.findAll();
+    })
 
-//     // .then(function (report) {
-//     //     //Render output from CockroachDB using our PUG template
-//     //     res.render('list', { report : report });
-//     // })
+    // .then(function (report) {
+    //     //Render output from CockroachDB using our PUG template
+    //     res.render('list', { report : report });
+    // })
 
-// });
+});
 
 app.get('/test', function (req, res) {
     var con = mysql.createConnection({
