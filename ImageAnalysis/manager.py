@@ -15,6 +15,7 @@ from os import listdir
 from io import BytesIO
 import os
 import glob
+import numpy as np
 
 from PIL import ImageStat
 
@@ -127,7 +128,8 @@ def satMapbox(lat, lon):
 
     files = glob.glob(satPAth + '*')
     for f in files:
-        os.remove(f)
+        if os.path.isfile(f):
+            os.remove(f)
 
     lat_lng = [lat, lon]
     delta=0.005
@@ -137,9 +139,7 @@ def satMapbox(lat, lon):
     east = lat_lng[1]+delta
     west = lat_lng[1]-delta
 
-    satPAth = './land_cover_classification_unet/satellite_images/'
-
-    allTiles = mercantile.tiles(east=east, south=south, north=north, west=west, zooms=16)
+    allTiles = mercantile.tiles(east=east, south=south, north=north, west=west, zooms=17)
     counter = 0
     for t in allTiles:
         counter += 1
@@ -153,7 +153,7 @@ def satMapbox(lat, lon):
 
     x_tile_range = [0, 0]
     y_tile_range = [0, 0]
-    allTiles = mercantile.tiles(east=east, south=south, north=north, west=west, zooms=16)
+    allTiles = mercantile.tiles(east=east, south=south, north=north, west=west, zooms=17)
     for i, t in enumerate(allTiles):
         if i == 0:
             x_tile_range[0] = t.x
@@ -196,12 +196,16 @@ def satMapbox(lat, lon):
 
         y_offset += height # Update the height
 
-    return composite
+    # composite = np.array(composite);
+    # ic(composite.shape)
+    # composite = Image.fromarray(composite[:, :, ::-1])
+    return composite.convert('RGB')
 
 if __name__ == '__main__':
     satPAth = './land_cover_classification_unet/satellite_images/'
 
     files = glob.glob(satPAth + '*')
     for f in files:
-        os.remove(f)
+        if os.path.isfile(f):
+            os.remove(f)
     main()

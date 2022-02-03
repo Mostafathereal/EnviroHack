@@ -18,7 +18,7 @@ var mapsKey = ''; // Temporary Fix
 //   keyIn = true;
 // }
 // Hard Coded (REMOVE FOR SURE)
-mapsKey = 'AIzaSyAUTWxZ7iFZMXHdMBE_pmKJIgbqDEQw3f4';
+mapsKey = '<>';
 
 class GpsInput extends React.Component{
 
@@ -54,7 +54,7 @@ class GpsInput extends React.Component{
           lat: newLat,
           lng: newLong
       },
-      NDWIImageData: ""
+      // NDWIImageData: ""
   })
 
   }
@@ -85,7 +85,7 @@ class GpsInput extends React.Component{
     const parsedJson = JSON.parse(json);
     //this.setStateAsync({NDWIImageData: parsedJson.NDWIImageData, NDVIImageData: parsedJson.NDVIImageData, BAIImageData: parsedJson.BAIImageData, segImageData: parsedJson.segImageData});
     this.props.updateState({NDWIImageData: parsedJson.NDWIImageData, NDVIImageData: parsedJson.NDVIImageData, BAIImageData: parsedJson.BAIImageData, segImageData: parsedJson.segImageData});
-    this.props.navigate('/reports');
+    this.props.navigate('/indices');
   }
 
 

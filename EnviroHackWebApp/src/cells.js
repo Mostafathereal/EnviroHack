@@ -21,12 +21,7 @@ render() {
 
   return(
   <TableRow>
-    <TableCell
-      classes="cellRoot"
-      component="th"
-      variant="head"
-      scope="row"
-    >
+    <TableCell classes="cellRoot" component="th" variant="head" scope="row">
       {date}
     </TableCell>
     <TableCell>

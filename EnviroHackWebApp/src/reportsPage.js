@@ -105,10 +105,10 @@ class Reports extends React.Component{
                     variant="head"
                     scope="row"
                   >
-                    {date}
+                    date
                   </TableCell>
                   <TableCell>
-                    {reportName}
+                    reportName
                   </TableCell>
                   <TableCell>
                     <button onClick={this.handleView}>View</button>
